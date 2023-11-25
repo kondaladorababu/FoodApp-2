@@ -23,12 +23,28 @@ function Cart() {
     userProgressCtx.hideCart();
   }
 
+  function handleGoToCheckOut() {
+    userProgressCtx.showCheckout();
+  }
+
   return (
-    <Modal className="cart" open={userProgressCtx.progress === "cart"}>
+    <Modal
+      className="cart"
+      open={userProgressCtx.progress === "cart"}
+      onClose={userProgressCtx.progress === "cart" ? handleCloseCart : null}>
       <h2>Your Title</h2>
       <ul>
         {ItemsInCart.map((item) => (
-          <CartItem key={item.id} {...item} onIncrease={()=>{cartCtx.addItem(item)}} onDecrease={()=>{cartCtx.removeItem(item.id)}}/>
+          <CartItem
+            key={item.id}
+            {...item}
+            onIncrease={() => {
+              cartCtx.addItem(item);
+            }}
+            onDecrease={() => {
+              cartCtx.removeItem(item.id);
+            }}
+          />
         ))}
       </ul>
       <p className="cart-total">{currencyFormatter.format(cartTotal)}</p>
@@ -36,7 +52,9 @@ function Cart() {
         <Button textOnly onClick={handleCloseCart}>
           close
         </Button>
-        <Button onClick={handleCloseCart}>Go to Checkout</Button>
+        {cartCtx.items.length > 0 && (
+          <Button onClick={handleGoToCheckOut}>Go to Checkout</Button>
+        )}
       </p>
     </Modal>
   );
