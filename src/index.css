@@ -23,7 +23,7 @@ body {
 
 #main-header #title {
   display: flex;
-  gap: 1rem;
+  gap: rem;
   align-items: center;
 }
 
@@ -49,6 +49,8 @@ h1 {
   letter-spacing: 0.2rem;
   text-transform: uppercase;
 }
+
+
 
 #meals {
   width: 90%;
@@ -106,6 +108,11 @@ h1 {
 .meal-item-actions {
   margin-bottom: 1.5rem;
 }
+
+
+
+
+
 
 .cart h2 {
   margin: 1rem 0;
